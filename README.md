@@ -1,329 +1,359 @@
-# Codeguide Starter Fullstack
+# Professional Clothing Rental Management System
 
-A modern web application starter template built with Next.js 15, featuring authentication, database integration, and dark mode support.
+A comprehensive full-stack web application for managing a professional clothing rental business with complete inventory management, booking system, and POS functionality.
 
-## Tech Stack
+## 🚀 Features
 
-- **Framework:** [Next.js 15](https://nextjs.org/) (App Router with Turbopack)
-- **Language:** TypeScript
-- **Authentication:** [Better Auth](https://better-auth.com/)
-- **Database:** [Drizzle ORM](https://orm.drizzle.team/) with PostgreSQL
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **UI Components:** [shadcn/ui](https://ui.shadcn.com/) (New York style)
-- **Theme System:** [next-themes](https://github.com/pacocoursey/next-themes)
-- **Icons:** [Lucide React](https://lucide.dev/)
+### Core Business Functionality
+- **Inventory Management**: Complete CRUD operations for clothing items with size/color variants
+- **Customer Management**: Customer profiles with rental history and contact information
+- **Rental System**: Multi-item cart with real-time availability checking and race condition prevention
+- **Point of Sale (POS)**: Intuitive interface for cashiers to process transactions
+- **Automated Laundry Cycles**: 3-day automatic laundry processing with scheduled job management
+- **Payment Processing**: Support for cash, transfer, and card payments
+- **Reporting Dashboard**: Comprehensive analytics for financial, inventory, and rental metrics
 
-## Prerequisites
+### Technical Features
+- **Role-Based Access Control**: Cashier, Manager, and Admin roles with appropriate permissions
+- **Real-time Updates**: Live inventory status and availability
+- **Database Transactions**: Race condition prevention with proper locking mechanisms
+- **Activity Logging**: Complete audit trail for all system actions
+- **Responsive Design**: Mobile-friendly interface
+- **Data Visualization**: Interactive charts and reports using Recharts
 
-Before you begin, ensure you have the following:
+## 🛠 Tech Stack
+
+### Frontend
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router with Turbopack)
+- **Language**: TypeScript
+- **Authentication**: [Better Auth](https://better-auth.com/) with role-based access
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/) (New York style)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Charts**: [Recharts](https://recharts.org/) for data visualization
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+### Backend
+- **API**: Next.js API Routes with RESTful architecture
+- **Database**: PostgreSQL with [Drizzle ORM](https://orm.drizzle.team/)
+- **Schema Management**: Drizzle Kit migrations
+- **Validation**: Zod schemas for input validation
+- **Authentication**: Better Auth with session management
+
+### Automation & DevOps
+- **Scheduled Jobs**: Vercel Cron Jobs for laundry cycle processing
+- **Docker Support**: Containerized deployment
+- **Health Monitoring**: System health check endpoints
+- **Database Migrations**: Version-controlled schema changes
+
+## 📋 System Requirements
+
+### Prerequisites
 - Node.js 18+ installed
-- Docker and Docker Compose (for database setup)
-- Generated project documents from [CodeGuide](https://codeguide.dev/) for best development experience
+- PostgreSQL database (local or cloud-based)
+- npm or yarn package manager
 
-## Getting Started
+### Database Requirements
+- PostgreSQL 12+ (recommended)
+- Connection pooling support
+- Transaction support
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd codeguide-starter-fullstack
-   ```
+## 🚀 Quick Start
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
+### 1. Clone and Install
 
-3. **Environment Variables Setup**
-   - Copy the `.env.example` file to `.env`:
-     ```bash
-     cp .env.example .env
-     ```
-   - The default values work with Docker setup, modify as needed
+```bash
+git clone <repository-url>
+cd professional-clothing-rental
+npm install
+```
 
-4. **Start the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
+### 2. Environment Setup
 
-5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
+```bash
+# Copy environment template
+cp .env.example .env
 
-## Configuration
-
-### Option 1: Docker Setup (Recommended)
-1. **Start PostgreSQL with Docker:**
-   ```bash
-   npm run db:up
-   ```
-   This starts PostgreSQL in a Docker container with default credentials.
-
-2. **Push database schema:**
-   ```bash
-   npm run db:push
-   ```
-
-### Option 2: Local Database Setup
-1. Create a PostgreSQL database locally
-2. Update your environment variables in `.env`:
-   ```env
-   DATABASE_URL=postgresql://username:password@localhost:5432/database_name
-   POSTGRES_DB=your_database_name
-   POSTGRES_USER=your_username
-   POSTGRES_PASSWORD=your_password
-   ```
-3. Run database migrations:
-   ```bash
-   npm run db:push
-   ```
-
-## Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
-```env
-# Database Configuration (defaults work with Docker)
-DATABASE_URL=postgresql://postgres:postgres@localhost:5433/postgres
-POSTGRES_DB=postgres
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-
-# Authentication
-BETTER_AUTH_SECRET=your_secret_key_here
+# Edit .env with your database URL and secrets
+DATABASE_URL=postgresql://username:password@localhost:5433/postgres
+BETTER_AUTH_SECRET=your-secret-key-here
 BETTER_AUTH_URL=http://localhost:3000
 NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
 ```
 
-## Features
-
-- 🔐 Authentication with Better Auth (email/password)
-- 🗄️ PostgreSQL Database with Drizzle ORM
-- 🎨 40+ shadcn/ui components (New York style)
-- 🌙 Dark mode with system preference detection
-- 🚀 App Router with Server Components and Turbopack
-- 📱 Responsive design with TailwindCSS v4
-- 🎯 Type-safe database operations
-- 🔒 Modern authentication patterns
-- 🐳 Full Docker support with multi-stage builds
-- 🚀 Production-ready deployment configuration
-
-## Project Structure
-
-```
-codeguide-starter-fullstack/
-├── app/                        # Next.js app router pages
-│   ├── globals.css            # Global styles with dark mode
-│   ├── layout.tsx             # Root layout with providers
-│   └── page.tsx               # Main page
-├── components/                # React components
-│   └── ui/                    # shadcn/ui components (40+)
-├── db/                        # Database configuration
-│   ├── index.ts              # Database connection
-│   └── schema/               # Database schemas
-├── docker/                    # Docker configuration
-│   └── postgres/             # PostgreSQL initialization
-├── hooks/                     # Custom React hooks
-├── lib/                       # Utility functions
-│   ├── auth.ts               # Better Auth configuration
-│   └── utils.ts              # General utilities
-├── auth-schema.ts            # Authentication schema
-├── docker-compose.yml        # Docker services configuration
-├── Dockerfile                # Application container definition
-├── drizzle.config.ts         # Drizzle configuration
-└── components.json           # shadcn/ui configuration
-```
-
-## Database Integration
-
-This starter includes modern database integration:
-
-- **Drizzle ORM** for type-safe database operations
-- **PostgreSQL** as the database provider
-- **Better Auth** integration with Drizzle adapter
-- **Database migrations** with Drizzle Kit
-
-## Development Commands
-
-### Application
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build for production with Turbopack
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-
-### Database
-- `npm run db:up` - Start PostgreSQL in Docker
-- `npm run db:down` - Stop PostgreSQL container
-- `npm run db:dev` - Start development PostgreSQL (port 5433)
-- `npm run db:dev-down` - Stop development PostgreSQL
-- `npm run db:push` - Push schema changes to database
-- `npm run db:generate` - Generate Drizzle migration files
-- `npm run db:studio` - Open Drizzle Studio (database GUI)
-- `npm run db:reset` - Reset database (drop all tables and recreate)
-
-### Styling with shadcn/ui
-- Pre-configured with 40+ shadcn/ui components in New York style
-- Components are fully customizable and use CSS variables for theming
-- Automatic dark mode support with next-themes integration
-- Add new components: `npx shadcn@latest add [component-name]`
-
-### Docker
-- `npm run docker:build` - Build application Docker image
-- `npm run docker:up` - Start full application stack (app + database)
-- `npm run docker:down` - Stop all containers
-- `npm run docker:logs` - View container logs
-- `npm run docker:clean` - Stop containers and clean up volumes
-
-## Docker Development
-
-### Quick Start with Docker
-```bash
-# Start the entire stack (recommended for new users)
-npm run docker:up
-
-# View logs
-npm run docker:logs
-
-# Stop everything
-npm run docker:down
-```
-
-### Development Workflow
-```bash
-# Option 1: Database only (develop app locally)
-npm run db:up          # Start PostgreSQL
-npm run dev            # Start Next.js development server
-
-# Option 2: Full Docker stack
-npm run docker:up      # Start both app and database
-```
-
-### Docker Services
-
-The `docker-compose.yml` includes:
-
-- **postgres**: Main PostgreSQL database (port 5432)
-- **postgres-dev**: Development database (port 5433) - use `--profile dev`
-- **app**: Next.js application container (port 3000)
-
-### Docker Profiles
+### 3. Database Setup
 
 ```bash
-# Start development database on port 5433
-docker-compose --profile dev up postgres-dev -d
+# Start PostgreSQL (using Docker)
+npm run db:up
 
-# Or use the npm script
-npm run db:dev
+# Run database migrations
+npm run db:push
+
+# (Optional) Seed with sample data
+npm run db:seed
 ```
 
-## Deployment
+### 4. Start Development Server
 
-### Production Deployment
-
-#### Option 1: Docker Compose (VPS/Server)
-
-1. **Clone and setup on your server:**
-   ```bash
-   git clone <your-repo>
-   cd codeguide-starter-fullstack
-   cp .env.example .env
-   ```
-
-2. **Configure environment variables:**
-   ```bash
-   # Edit .env with production values
-   DATABASE_URL=postgresql://postgres:your_secure_password@postgres:5432/postgres
-   POSTGRES_DB=postgres
-   POSTGRES_USER=postgres
-   POSTGRES_PASSWORD=your_secure_password
-   BETTER_AUTH_SECRET=your-very-secure-secret-key
-   BETTER_AUTH_URL=https://yourdomain.com
-   NEXT_PUBLIC_BETTER_AUTH_URL=https://yourdomain.com
-   ```
-
-3. **Deploy:**
-   ```bash
-   npm run docker:up
-   ```
-
-#### Option 2: Container Registry (AWS/GCP/Azure)
-
-1. **Build and push image:**
-   ```bash
-   # Build the image
-   docker build -t your-registry/codeguide-starter-fullstack:latest .
-   
-   # Push to registry
-   docker push your-registry/codeguide-starter-fullstack:latest
-   ```
-
-2. **Deploy using your cloud provider's container service**
-
-#### Option 3: Vercel + External Database
-
-1. **Deploy to Vercel:**
-   ```bash
-   npm i -g vercel
-   vercel
-   ```
-
-2. **Add environment variables in Vercel dashboard:**
-   - `DATABASE_URL`: Your managed PostgreSQL connection string
-   - `BETTER_AUTH_SECRET`: Generate a secure secret
-   - `BETTER_AUTH_URL`: Your Vercel deployment URL
-
-3. **Setup database:**
-   ```bash
-   # Push schema to your managed database
-   npm run db:push
-   ```
-
-### Environment Variables for Production
-
-```env
-# Required for production
-DATABASE_URL=postgresql://user:password@host:port/database
-BETTER_AUTH_SECRET=generate-a-very-secure-32-character-key
-BETTER_AUTH_URL=https://yourdomain.com
-
-# Optional optimizations
-NODE_ENV=production
+```bash
+npm run dev
 ```
 
-### Production Considerations
+Visit [http://localhost:3000](http://localhost:3000) to access the application.
 
-- **Database**: Use managed PostgreSQL (AWS RDS, Google Cloud SQL, etc.)
-- **Security**: Generate strong secrets, use HTTPS
-- **Performance**: Enable Next.js output: 'standalone' for smaller containers
-- **Monitoring**: Add logging and health checks
-- **Backup**: Regular database backups
-- **SSL**: Terminate SSL at load balancer or reverse proxy
+## 📊 Business Workflows
 
-### Health Checks
+### Workflow A: Rental Registration
+1. Customer arrives at store
+2. Cashier searches and selects available items
+3. Items added to rental cart with return dates
+4. Customer information entered or selected
+5. Payment processed (cash/transfer/card)
+6. System generates rental invoice
+7. Transaction complete
 
-The application includes basic health checks. You can extend them:
+### Workflow B: Item Pickup
+1. Customer presents rental invoice
+2. Cashier verifies rental in system
+3. Items marked as "picked up" with timestamp
+4. System generates pickup receipt
+5. Customer receives items
 
-```dockerfile
-# In Dockerfile, add health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:3000/api/health || exit 1
+### Workflow C: Item Return
+1. Customer returns items
+2. Cashier checks item completeness
+3. System calculates any late fees
+4. Additional payment processed if needed
+5. Items marked as returned
+6. Automatic 3-day laundry cycle initiated
+7. Items blocked from rental during laundry
+8. Auto-availability after 3 days
+
+## 🏗 Database Schema
+
+### Core Entities
+- **Users**: Staff with role-based access (cashier, manager, admin)
+- **Customers**: Customer profiles and contact information
+- **ClothingModels**: Base clothing items with pricing
+- **InventoryItems**: Size/color variants with individual tracking
+- **Rentals**: Main rental transactions
+- **RentalItems**: Junction table for rental-line items
+- **Payments**: Payment records and transaction history
+- **LaundryCycles**: Automated laundry process tracking
+- **ActivityLogs**: Comprehensive audit trail
+
+### Key Relationships
+- Each ClothingModel can have multiple InventoryItems (size/color variants)
+- Each InventoryItem can be rented by one customer at a time
+- Rentals can include multiple items
+- Activity is logged for all critical actions
+- Laundry cycles are automatically created on item return
+
+## 🎯 User Roles & Permissions
+
+### Cashier Role
+- Process rental transactions
+- Handle item pickups and returns
+- Record payments and generate invoices
+- View basic inventory availability
+
+### Manager Role
+- All cashier capabilities
+- Manage inventory (CRUD operations)
+- View comprehensive reports and analytics
+- Override item availability
+- Access financial reports
+
+### Admin Role
+- All manager capabilities
+- Manage users and permissions
+- System configuration
+- Full system access
+
+## 📈 Reporting & Analytics
+
+### Financial Reports
+- Revenue tracking (daily/weekly/monthly)
+- Payment method breakdown
+- Cash inflow/outflow analysis
+- Top customer performance
+- Transaction volume metrics
+
+### Inventory Reports
+- Current availability status
+- Items in laundry with return dates
+- Overdue returns tracking
+- Damaged/unavailable items
+- Rental history per item
+- Utilization rates analysis
+
+### Rental Reports
+- Active rentals monitoring
+- Overdue return alerts
+- Customer rental history
+- Cashier performance metrics
+- Transaction completion rates
+
+## 🔧 Automated Systems
+
+### Laundry Cycle Management
+- **Automatic Processing**: Items automatically enter 3-day laundry cycles on return
+- **Scheduled Completion**: Hourly job processes overdue cycles
+- **Manual Override**: Staff can complete cycles early or extend duration
+- **Status Tracking**: Real-time laundry cycle monitoring
+- **Activity Logging**: Complete audit trail for laundry operations
+
+### System Health Monitoring
+- **Database Health**: Connection and performance monitoring
+- **Memory Usage**: Application memory tracking
+- **Error Tracking**: Comprehensive error logging
+- **API Performance**: Response time monitoring
+
+## 🐳 Docker Deployment
+
+### Development Setup
+```bash
+# Using Docker Compose
+docker compose up -d
+
+# Development database
+docker compose --profile dev up postgres-dev -d
 ```
 
-## AI Coding Agent Integration
+### Production Build
+```bash
+# Build production image
+docker build -t clothing-rental-system .
 
-This starter is optimized for AI coding agents:
+# Run with environment variables
+docker run -p 3000:3000 \
+  -e DATABASE_URL=your-database-url \
+  -e BETTER_AUTH_SECRET=your-secret \
+  clothing-rental-system
+```
 
-- **Clear file structure** and naming conventions
-- **TypeScript integration** with proper type definitions
-- **Modern authentication** patterns
-- **Database schema** examples
+## 🚀 Production Deployment
 
-## Contributing
+### Vercel (Recommended)
+1. Connect GitHub repository to Vercel
+2. Configure environment variables
+3. Deploy automatically on push
+4. Cron jobs automatically configured
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-# codeguide-starter-fullstack
+### Other Platforms
+- Railway: Full-stack deployment with PostgreSQL
+- DigitalOcean: App Platform with managed database
+- AWS: Elastic Beanstalk with RDS
+- Self-hosted: Docker with external PostgreSQL
+
+**See [DEPLOYMENT.md](./DEPLOYMENT.md) for comprehensive deployment instructions.**
+
+## 🔒 Security Features
+
+### Authentication & Authorization
+- Secure session management with Better Auth
+- Role-based access control
+- Input validation with Zod schemas
+- SQL injection prevention via Drizzle ORM
+
+### Data Protection
+- Database transactions for data integrity
+- Race condition prevention
+- Activity logging for audit trails
+- Secure password handling
+
+### API Security
+- Request validation
+- Rate limiting ready (implementation recommended)
+- CORS configuration
+- Environment variable protection
+
+## 🧪 Testing
+
+### Database Testing
+```bash
+# Reset database
+npm run db:reset
+
+# Seed test data
+npm run db:seed
+
+# Run database studio
+npm run db:studio
+```
+
+### API Testing
+- All endpoints include comprehensive error handling
+- Input validation with detailed error messages
+- Database transaction testing
+
+## 📚 API Documentation
+
+### Core Endpoints
+- `GET/POST /api/inventory` - Inventory management
+- `GET/POST /api/customers` - Customer management
+- `GET/POST /api/rentals` - Rental operations
+- `POST /api/rentals/[id]/pickup` - Process item pickup
+- `POST /api/rentals/[id]/return` - Process item return
+- `GET/POST /api/payments` - Payment processing
+- `GET /api/reports/*` - Reports and analytics
+
+### Management Endpoints
+- `GET/POST /api/models` - Clothing model management
+- `POST /api/laundry/process` - Manual laundry processing
+- `POST /api/laundry/cycles/[id]/complete` - Complete laundry early
+- `POST /api/laundry/cycles/[id]/extend` - Extend laundry cycle
+
+### System Endpoints
+- `GET /api/system/health` - System health check
+- `GET /api/cron/laundry-processing` - Scheduled job trigger
+
+## 🔧 Development Tools
+
+### Database Management
+```bash
+# Generate migrations
+npm run db:generate
+
+# Push schema changes
+npm run db:push
+
+# View database in studio
+npm run db:studio
+
+# Reset database
+npm run db:reset
+```
+
+### Code Quality
+```bash
+# Run linter
+npm run lint
+
+# Type checking
+npm run build
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+For support and questions:
+- Check the [deployment guide](./DEPLOYMENT.md)
+- Review the API documentation in code comments
+- Check system logs for troubleshooting
+- Monitor health check endpoint: `/api/system/health`
+
+---
+
+**Built with ❤️ for professional clothing rental businesses**
